@@ -1,4 +1,4 @@
-##### **Team 1 - DumbSpirator: Mohamed FARAH ; Morgan ZARKA** 
+##### **Team 1 - DumbSpirator: Mohamed FARAH ; Morgan ZARKA**
 
 
 
@@ -6,7 +6,7 @@
 
 
 
-On active le robot avec le switch 1 // Mohamed
+On active le robot avec le switch 1
 
 
 
@@ -14,39 +14,39 @@ Il avance continuellement jusqu'à rencontrer un obstacle.
 
 
 
-&nbsp;	Cas 1 :  L'obstacle touche le bumper gauche.
+ 	Cas 1 :  L'obstacle touche le bumper gauche.
 
-&nbsp;		Le robot fait clignoter la led droite.
+ 		Le robot fait clignoter la led droite.
 
-&nbsp;		Le robot recule d'une certaine distance
+ 		Le robot recule d'une certaine distance
 
-&nbsp;		Le robot Pivote du côté droit et continue sa route
-
-
-
-&nbsp;	Cas 2 : L'obstacle touche le bumper droit.
-
-&nbsp;		Le robot fait clignoter la led gauche.
-
-&nbsp;		Le robot recule d'une certaine distance
-
-&nbsp;		Le robot Pivote du côté gauche et continue sa route
+ 		Le robot Pivote du côté droit et continue sa route
 
 
 
-&nbsp;	Cas 3 : L'obstacle touche les deux bumper.
+ 	Cas 2 : L'obstacle touche le bumper droit.
 
-&nbsp;		Le robot allume les feux de détresse(gauche droit clignotent en alternance).
+ 		Le robot fait clignoter la led gauche.
 
-&nbsp;		Le robot fait un demi tour
+ 		Le robot recule d'une certaine distance
 
-&nbsp;		Le robot éteint les feux de detresses.
-
-&nbsp;		Le robot continue sa route.
+ 		Le robot Pivote du côté gauche et continue sa route
 
 
 
-Particularité : 
+ 	Cas 3 : L'obstacle touche les deux bumper.
+
+ 		Le robot allume les feux de détresse(gauche droit clignotent en alternance).
+
+ 		Le robot fait un demi tour
+
+ 		Le robot éteint les feux de détresses.
+
+ 		Le robot continue sa route.
+
+
+
+Particularité :
 
 
 
@@ -60,25 +60,29 @@ On éteint le robot avec le switch 2
 
 
 
-boucle btn1
+boucle btn1 // Mohamed -allumage
 
 
 
-faire avancer
+faire avancer // Morgan
 
 
 
-boucle bumpers + btn2 + clignotement + augmentation vitesse (horloge à gérer)
-
-
+boucle bumpers (Mohamed) (test bumper) + btn2 (Morgan) + clignotement passif (Mohamed) + augmentation vitesse (horloge à gérer) (à désigner (second temps))
 
 Si bumpers, vérifier si juste 1 ou si les deux
 
 
 
-faire reculer + tourner + reset horloge
+faire reculer (Mohamed) + Pivoter (Morgan) + reset horloge (celui qui aura géré l'augmentation de la vitesse) + clignotant (Morgan)
 
 
 
-Mode détresse
+Mode détresse :
+
+Faire reculer (Morgan)
+
+Demi tour (Mohamed)
+
+Lumière alternance (Morgan)
 
