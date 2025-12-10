@@ -1,0 +1,84 @@
+##### **Team 1 - DumbSpirator: Mohamed FARAH ; Morgan ZARKA** 
+
+
+
+###### **Fonctionnement**
+
+
+
+On active le robot avec le switch 1 // Mohamed
+
+
+
+Il avance continuellement jusqu'à rencontrer un obstacle.
+
+
+
+&nbsp;	Cas 1 :  L'obstacle touche le bumper gauche.
+
+&nbsp;		Le robot fait clignoter la led droite.
+
+&nbsp;		Le robot recule d'une certaine distance
+
+&nbsp;		Le robot Pivote du côté droit et continue sa route
+
+
+
+&nbsp;	Cas 2 : L'obstacle touche le bumper droit.
+
+&nbsp;		Le robot fait clignoter la led gauche.
+
+&nbsp;		Le robot recule d'une certaine distance
+
+&nbsp;		Le robot Pivote du côté gauche et continue sa route
+
+
+
+&nbsp;	Cas 3 : L'obstacle touche les deux bumper.
+
+&nbsp;		Le robot allume les feux de détresse(gauche droit clignotent en alternance).
+
+&nbsp;		Le robot fait un demi tour
+
+&nbsp;		Le robot éteint les feux de detresses.
+
+&nbsp;		Le robot continue sa route.
+
+
+
+Particularité : 
+
+
+
+Au bout d'un certain temps sans touche d'obstacle, le robot va accélérer et faire clignoter très rapidement ses leds.
+
+Lorsqu'il est en mode vitesse normal, les leds clignotent lentement
+
+On éteint le robot avec le switch 2
+
+
+
+
+
+boucle btn1
+
+
+
+faire avancer
+
+
+
+boucle bumpers + btn2 + clignotement + augmentation vitesse (horloge à gérer)
+
+
+
+Si bumpers, vérifier si juste 1 ou si les deux
+
+
+
+faire reculer + tourner + reset horloge
+
+
+
+Mode détresse
+
