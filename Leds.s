@@ -64,43 +64,54 @@ ledsInit
 		ldr r6, = GPIO_PORTF_BASE + GPIO_O_DR2R	;; Choix de l'intensité de sortie (2mA)
         str r0, [r6]
         
-		ldr r6, = GPIO_PORTF_BASE + (BROCHE4<<2)  ;; @data Register = @base + (mask<<2) ==> LED1
-		ldr r7, = GPIO_PORTF_BASE + (BROCHE5<<2)  ;; @data Register = @base + (mask<<2) ==> LED2
-		ldr r8, = GPIO_PORTF_BASE + (BROCHE4_5<<2)  ;; @data Register = @base + (mask<<2) ==> LED1&2
+		ldr r6, = GPIO_PORTF_BASE + (BROCHE4_5<<2)  ;; @data Register = @base + (mask<<2) ==> LED1&2
 		;vvvvvvvvvvvvvvvvvvvvvvvFin configuration LED
         
         BX LR                                    
 
 		;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^Fonctions LED
-LedON_1
-	ldr r0,= BROCHE4
+LedOn1
+	ldr r0, [r6]
+	orr r0, #BROCHE4
 	str r0, [r6]
 	BX LR
 	
-LedOFF_1
-	mov r0, #0x00
+ToggleLed1
+	ldr r0, [r6]
+	eor r0, #BROCHE4
 	str r0, [r6]
 	BX LR
 	
-LedON_2
-	ldr r0,= BROCHE5
-	str r0, [r7]
+LedOn2
+	ldr r0, [r6]
+	orr r0, #BROCHE5
+	str r0, [r6]
 	BX LR
 	
-LedOFF_2
-	mov r0, #0x00
-	str r0, [r7]
+ToggleLed2
+	ldr r0, [r6]
+	eor r0, #BROCHE5
+	str r0, [r6]
 	BX LR
 	
-LedsON_1_2
-	ldr r0,= BROCHE4_5
-	str r0, [r8]
+LedsOn
+	ldr r0, [r6]
+	orr r0, #BROCHE4_5
+	str r0, [r6]
+	BX LR
+		
+ToggleLeds
+	ldr r0, [r6]
+	eor r0, #BROCHE4_5
+	str r0, [r6]
 	BX LR
 	
-LedsOFF_1_2
-	mov r0, #0x00
-	str r0, [r8]
+LedsOff
+	ldr r0, [r6]
+	bic r0, #BROCHE4_5
+	str r0, [r6]
 	BX LR
+		
 		
 		nop		
 		END
