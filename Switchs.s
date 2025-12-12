@@ -52,7 +52,7 @@ switchersInit
 		ldr r8, =GPIO_PORTD_BASE + (BROCHE7<<2)   ;; @data Register = @base + (mask<<2) ==> Switcher2
 		
 	;vvvvvvvvvvvvvvvvvvvvvvvFin configuration Switchers
-		BX LR                                     ;; <--- INDISPENSABLE : Fin de l'init
+		BX LR                                    
 
 readSwitch1
 		ldr r0, [r7] ;; Résultat stocké dans le registre de retour r0
