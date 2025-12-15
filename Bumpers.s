@@ -18,6 +18,9 @@ BROCHE_BUMPER0		EQU		0x01		; PE0
 BROCHE_BUMPER1		EQU		0x02		; PE1
 BROCHES_BUMPER0_1	EQU		0x03		; PE0 | PE1
 
+; Nouvelle adresse pour la lecture groupée
+R11_ADDR_BUMPERS	EQU		11          ; Registre R11 pour l'adresse groupée
+
 bumpersInit
 		
 	ldr r6, = SYSCTL_PERIPH_GPIO 			;; RCGC2
@@ -26,7 +29,7 @@ bumpersInit
 	str r0, [r6]
 		
 	; Délai obligatoire (lecture du registre après activation)
-	nop
+    ldr r0, [r6]                            ; Lecture de RCGC2 pour garantir le délai (Correction)
 	nop
 	nop
 	
@@ -45,6 +48,9 @@ bumpersInit
 	ldr r9, = GPIO_PORTE_BASE + (BROCHE_BUMPER0<<2)
 		; R10 = Adresse Data Reg. Bumper 1 (PE1)
 	ldr r10, = GPIO_PORTE_BASE + (BROCHE_BUMPER1<<2)
+    
+    ; R11 = Adresse Data Reg. Bumper 0 et 1 (PE0 | PE1)
+    ldr r11, = GPIO_PORTE_BASE + (BROCHES_BUMPER0_1<<2)
 	
 	BX LR
 	
@@ -55,3 +61,7 @@ readBumper0
 readBumper1
 	ldr 	r0, [r10]					; Lecture de PE1 (Bumper 1)
 	BX LR
+
+readBumpers_0_1
+    ldr     r0, [r11]                   ; Lecture de PE0 et PE1 en même temps
+    BX LR
