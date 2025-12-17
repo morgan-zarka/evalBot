@@ -27,6 +27,10 @@ BROCHE6				EQU 	0x40		; switcher 1
 BROCHE7				EQU		0x80		; switcher 2
 BROCHE6_7			EQU		0xc0		; switcher 1 et 2
 	
+		EXPORT	switchersInit
+		EXPORT	readSwitch1
+		EXPORT  readSwitch2
+			
 switchersInit
 	; ;; Enable the Port D peripheral clock 		(p291 datasheet de lm3s9B96.pdf)									
 		ldr r6, =SYSCTL_PERIPH_GPIO 			;; RCGC2

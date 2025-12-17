@@ -30,9 +30,14 @@ BROCHE4				EQU		0x10		; led1 broche 4
 BROCHE5				EQU		0x20		; led2 broche 5
 BROCHE4_5			EQU		0x30		; led1 & led2 sur broche 4 et 5
 
-; blinking frequency
-DUREE  				EQU  	0x002FFFFF
-
+		EXPORT	ledsInit
+		EXPORT	ledOn1
+		EXPORT  ToggleLed1
+		EXPORT  LedOn2
+		EXPORT  ToggleLed2
+		EXPORT  LedsOn	
+		EXPORT	ToggleLeds
+		EXPORT  LedsOff
 
 		; ;; Enable the Port F peripheral clock 		(p291 datasheet de lm3s9B96.pdf)
 ledsInit

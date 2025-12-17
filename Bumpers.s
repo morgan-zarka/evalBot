@@ -20,7 +20,12 @@ BROCHES_BUMPER0_1	EQU		0x03		; PE0 | PE1
 
 ; Nouvelle adresse pour la lecture groupée
 R11_ADDR_BUMPERS	EQU		11          ; Registre R11 pour l'adresse groupée
-
+	
+		EXPORT	bumpersInit
+		EXPORT	readBumper0
+		EXPORT  readBumper1
+		EXPORT  readBumper0_1
+			
 bumpersInit
 		
 	ldr r6, = SYSCTL_PERIPH_GPIO 			;; RCGC2
