@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\PROJET EVALBOT.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\PROJET EVALBOT.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Wed Dec 17 09:52:55 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Wed Dec 17 11:46:23 2025
 <BR><P>
 <H3>Maximum Stack Usage =          0 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -14,21 +14,21 @@ Functions with no stack information
 </H3><UL>
  <LI><a href="#[0]">Reset_Handler</a>
  <LI><a href="#[4]">__main</a>
- <LI><a href="#[10]">LedsInit</a>
- <LI><a href="#[13]">LedOn1</a>
- <LI><a href="#[14]">ToggleLed1</a>
- <LI><a href="#[15]">LedOn2</a>
- <LI><a href="#[16]">ToggleLed2</a>
- <LI><a href="#[17]">LedsOn</a>
- <LI><a href="#[18]">ToggleLeds</a>
- <LI><a href="#[19]">LedsOff</a>
- <LI><a href="#[11]">switchersInit</a>
- <LI><a href="#[1a]">readSwitch1</a>
- <LI><a href="#[1b]">readSwitch2</a>
- <LI><a href="#[12]">bumpersInit</a>
- <LI><a href="#[1c]">readBumper0</a>
- <LI><a href="#[1d]">readBumper1</a>
- <LI><a href="#[1e]">readBumpers0_1</a>
+ <LI><a href="#[12]">LedsInit</a>
+ <LI><a href="#[17]">LedOn1</a>
+ <LI><a href="#[18]">ToggleLed1</a>
+ <LI><a href="#[19]">LedOn2</a>
+ <LI><a href="#[1a]">ToggleLed2</a>
+ <LI><a href="#[1b]">LedsOn</a>
+ <LI><a href="#[16]">ToggleLeds</a>
+ <LI><a href="#[1c]">LedsOff</a>
+ <LI><a href="#[13]">switchersInit</a>
+ <LI><a href="#[15]">readSwitch1</a>
+ <LI><a href="#[1d]">readSwitch2</a>
+ <LI><a href="#[14]">bumpersInit</a>
+ <LI><a href="#[1e]">readBumper0</a>
+ <LI><a href="#[1f]">readBumper1</a>
+ <LI><a href="#[20]">readBumpers0_1</a>
  <LI><a href="#[5]">MOTEUR_INIT</a>
  <LI><a href="#[6]">MOTEUR_DROIT_ON</a>
  <LI><a href="#[7]">MOTEUR_DROIT_OFF</a>
@@ -40,6 +40,8 @@ Functions with no stack information
  <LI><a href="#[d]">MOTEUR_GAUCHE_AVANT</a>
  <LI><a href="#[e]">MOTEUR_DROIT_INVERSE</a>
  <LI><a href="#[f]">MOTEUR_GAUCHE_INVERSE</a>
+ <LI><a href="#[10]">setRapidMode</a>
+ <LI><a href="#[11]">setNormalMode</a>
  <LI><a href="#[1]">NmiSR</a>
  <LI><a href="#[2]">FaultISR</a>
  <LI><a href="#[3]">IntDefaultHandler</a>
@@ -71,79 +73,101 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
 <P><STRONG><a name="[4]"></a>__main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, main.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;switchersInit
-<LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bumpersInit
+<BR><BR>[Calls]<UL><LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;switchersInit
+<LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readSwitch1
+<LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bumpersInit
+<LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToggleLeds
 <LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTEUR_INIT
-<LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedsInit
+<LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTEUR_GAUCHE_ON
+<LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTEUR_GAUCHE_AVANT
+<LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTEUR_DROIT_ON
+<LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTEUR_DROIT_AVANT
+<LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedsInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
 </UL>
 
-<P><STRONG><a name="[10]"></a>LedsInit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text))
+<P><STRONG><a name="[12]"></a>LedsInit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 </UL>
 
-<P><STRONG><a name="[13]"></a>LedOn1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
+<P><STRONG><a name="[17]"></a>LedOn1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
 
-<P><STRONG><a name="[14]"></a>ToggleLed1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
+<P><STRONG><a name="[18]"></a>ToggleLed1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
 
-<P><STRONG><a name="[15]"></a>LedOn2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
+<P><STRONG><a name="[19]"></a>LedOn2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
 
-<P><STRONG><a name="[16]"></a>ToggleLed2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
+<P><STRONG><a name="[1a]"></a>ToggleLed2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
 
-<P><STRONG><a name="[17]"></a>LedsOn</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
+<P><STRONG><a name="[1b]"></a>LedsOn</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
 
-<P><STRONG><a name="[18]"></a>ToggleLeds</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
-
-<P><STRONG><a name="[19]"></a>LedsOff</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
-
-<P><STRONG><a name="[11]"></a>switchersInit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, switchs.o(.text))
+<P><STRONG><a name="[16]"></a>ToggleLeds</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 </UL>
 
-<P><STRONG><a name="[1a]"></a>readSwitch1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, switchs.o(.text), UNUSED)
+<P><STRONG><a name="[1c]"></a>LedsOff</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
 
-<P><STRONG><a name="[1b]"></a>readSwitch2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, switchs.o(.text), UNUSED)
-
-<P><STRONG><a name="[12]"></a>bumpersInit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, bumpers.o(.text))
+<P><STRONG><a name="[13]"></a>switchersInit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, switchs.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 </UL>
 
-<P><STRONG><a name="[1c]"></a>readBumper0</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, bumpers.o(.text), UNUSED)
+<P><STRONG><a name="[15]"></a>readSwitch1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, switchs.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+</UL>
 
-<P><STRONG><a name="[1d]"></a>readBumper1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, bumpers.o(.text), UNUSED)
+<P><STRONG><a name="[1d]"></a>readSwitch2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, switchs.o(.text), UNUSED)
 
-<P><STRONG><a name="[1e]"></a>readBumpers0_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, bumpers.o(.text), UNUSED)
+<P><STRONG><a name="[14]"></a>bumpersInit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, bumpers.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+</UL>
+
+<P><STRONG><a name="[1e]"></a>readBumper0</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, bumpers.o(.text), UNUSED)
+
+<P><STRONG><a name="[1f]"></a>readBumper1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, bumpers.o(.text), UNUSED)
+
+<P><STRONG><a name="[20]"></a>readBumpers0_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, bumpers.o(.text), UNUSED)
 
 <P><STRONG><a name="[5]"></a>MOTEUR_INIT</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rk_config_moteur.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 </UL>
 
-<P><STRONG><a name="[6]"></a>MOTEUR_DROIT_ON</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rk_config_moteur.o(.text), UNUSED, KEPT)
+<P><STRONG><a name="[6]"></a>MOTEUR_DROIT_ON</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rk_config_moteur.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+</UL>
 
 <P><STRONG><a name="[7]"></a>MOTEUR_DROIT_OFF</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rk_config_moteur.o(.text), UNUSED, KEPT)
 
-<P><STRONG><a name="[8]"></a>MOTEUR_GAUCHE_ON</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rk_config_moteur.o(.text), UNUSED, KEPT)
+<P><STRONG><a name="[8]"></a>MOTEUR_GAUCHE_ON</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rk_config_moteur.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+</UL>
 
 <P><STRONG><a name="[9]"></a>MOTEUR_GAUCHE_OFF</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rk_config_moteur.o(.text), UNUSED, KEPT)
 
 <P><STRONG><a name="[a]"></a>MOTEUR_DROIT_ARRIERE</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rk_config_moteur.o(.text), UNUSED, KEPT)
 
-<P><STRONG><a name="[b]"></a>MOTEUR_DROIT_AVANT</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rk_config_moteur.o(.text), UNUSED, KEPT)
+<P><STRONG><a name="[b]"></a>MOTEUR_DROIT_AVANT</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rk_config_moteur.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+</UL>
 
 <P><STRONG><a name="[c]"></a>MOTEUR_GAUCHE_ARRIERE</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rk_config_moteur.o(.text), UNUSED, KEPT)
 
-<P><STRONG><a name="[d]"></a>MOTEUR_GAUCHE_AVANT</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rk_config_moteur.o(.text), UNUSED, KEPT)
+<P><STRONG><a name="[d]"></a>MOTEUR_GAUCHE_AVANT</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rk_config_moteur.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+</UL>
 
 <P><STRONG><a name="[e]"></a>MOTEUR_DROIT_INVERSE</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rk_config_moteur.o(.text), UNUSED, KEPT)
 
 <P><STRONG><a name="[f]"></a>MOTEUR_GAUCHE_INVERSE</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rk_config_moteur.o(.text), UNUSED, KEPT)
 
-<P><STRONG><a name="[1f]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[10]"></a>setRapidMode</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rk_config_moteur.o(.text), UNUSED, KEPT)
 
-<P><STRONG><a name="[20]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[11]"></a>setNormalMode</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rk_config_moteur.o(.text), UNUSED, KEPT)
 
-<P><STRONG><a name="[21]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[21]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+
+<P><STRONG><a name="[22]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+
+<P><STRONG><a name="[23]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 <P>
 <H3>
 Local Symbols
