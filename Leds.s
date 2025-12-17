@@ -1,5 +1,5 @@
-AREA    |.text|, CODE, READONLY
-		ALIGN
+		AREA    |.text|, CODE, READONLY
+        ALIGN
 
 ; This register controls the clock gating logic in normal Run mode
 SYSCTL_PERIPH_GPIO EQU		0x400FE108	; SYSCTL_RCGC2_R (p291 datasheet de lm3s9b92.pdf)
@@ -30,26 +30,26 @@ BROCHE4				EQU		0x10		; led1 broche 4
 BROCHE5				EQU		0x20		; led2 broche 5
 BROCHE4_5			EQU		0x30		; led1 & led2 sur broche 4 et 5
 
-		EXPORT	ledsInit
-		EXPORT	ledOn1
-		EXPORT  ToggleLed1
-		EXPORT  LedOn2
-		EXPORT  ToggleLed2
-		EXPORT  LedsOn	
-		EXPORT	ToggleLeds
-		EXPORT  LedsOff
+        EXPORT	LedsInit
+        EXPORT	LedOn1
+        EXPORT  ToggleLed1
+        EXPORT  LedOn2
+        EXPORT  ToggleLed2
+        EXPORT  LedsOn	
+        EXPORT	ToggleLeds
+        EXPORT  LedsOff
 
 		; ;; Enable the Port F peripheral clock 		(p291 datasheet de lm3s9B96.pdf)
-ledsInit
-		ldr r6, = SYSCTL_PERIPH_GPIO 			;; RCGC2
-        ldr r0, [r6]                            
+LedsInit
+		ldr r5, = SYSCTL_PERIPH_GPIO 			;; RCGC2
+        ldr r0, [r5]                            
         orr r0, r0, #0x00000020 					;; Enable clock sur GPIO F où sont branchés les leds en utilisant un ou binaire pour pas écraser
 													;; orr = mot-clé montré par chatgpt
-        str r0, [r6]
+        str r0, [r5]
 
 		; ;;														 									
 		
-		; ;; "There must be a delay of 3 system clocks before any GPIO reg. access  (p413 datasheet de lm3s9B92.pdf)                         
+		; ;; "There must be a delay of 3 system clocks before any GPIO reg. access  (p413 datasheet de lm3s9B92.pdf)                         
 		nop 	 								;; tres tres important....
 		nop 
 		nop 										;; pas necessaire en simu ou en debbug step by step...
@@ -58,65 +58,64 @@ ledsInit
         
         ldr r0, = BROCHE4_5 	
         
-		ldr r6, = GPIO_PORTF_BASE + GPIO_O_DIR 	;; 1 Pin du portF en sortie (broche 4 : 00010000)
-        str r0, [r6]
+		ldr r5, = GPIO_PORTF_BASE + GPIO_O_DIR 	;; 1 Pin du portF en sortie (broche 4 : 00010000)
+        str r0, [r5]
 		
         
-		ldr r6, = GPIO_PORTF_BASE + GPIO_O_DEN	;; Enable Digital Function
-        str r0, [r6]
+		ldr r5, = GPIO_PORTF_BASE + GPIO_O_DEN	;; Enable Digital Function
+        str r0, [r5]
 		
         
-		ldr r6, = GPIO_PORTF_BASE + GPIO_O_DR2R	;; Choix de l'intensité de sortie (2mA)
-        str r0, [r6]
+		ldr r5, = GPIO_PORTF_BASE + GPIO_O_DR2R	;; Choix de l'intensité de sortie (2mA)
+        str r0, [r5]
         
-		ldr r6, = GPIO_PORTF_BASE + (BROCHE4_5<<2)  ;; @data Register = @base + (mask<<2) ==> LED1&2
+		ldr r5, = GPIO_PORTF_BASE + (BROCHE4_5<<2)  ;; @data Register = @base + (mask<<2) ==> LED1&2
 		;vvvvvvvvvvvvvvvvvvvvvvvFin configuration LED
         
         BX LR                                    
 
 		;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^Fonctions LED
 LedOn1
-	ldr r0, [r6]
+	ldr r0, [r5]
 	orr r0, #BROCHE4
-	str r0, [r6]
+	str r0, [r5]
 	BX LR
 	
 ToggleLed1
-	ldr r0, [r6]
+	ldr r0, [r5]
 	eor r0, #BROCHE4
-	str r0, [r6]
+	str r0, [r5]
 	BX LR
 	
 LedOn2
-	ldr r0, [r6]
+	ldr r0, [r5]
 	orr r0, #BROCHE5
-	str r0, [r6]
+	str r0, [r5]
 	BX LR
 	
 ToggleLed2
-	ldr r0, [r6]
+	ldr r0, [r5]
 	eor r0, #BROCHE5
-	str r0, [r6]
+	str r0, [r5]
 	BX LR
 	
 LedsOn
-	ldr r0, [r6]
+	ldr r0, [r5]
 	orr r0, #BROCHE4_5
-	str r0, [r6]
+	str r0, [r5]
 	BX LR
 		
 ToggleLeds
-	ldr r0, [r6]
+	ldr r0, [r5]
 	eor r0, #BROCHE4_5
-	str r0, [r6]
+	str r0, [r5]
 	BX LR
 	
 LedsOff
-	ldr r0, [r6]
+	ldr r0, [r5]
 	bic r0, #BROCHE4_5
-	str r0, [r6]
+	str r0, [r5]
 	BX LR
-		
 		
 		nop		
 		END

@@ -1,4 +1,4 @@
-AREA    |.text|, CODE, READONLY
+		AREA    |.text|, CODE, READONLY
 		ALIGN
 
 ; This register controls the clock gating logic in normal Run mode

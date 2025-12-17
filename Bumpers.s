@@ -1,4 +1,4 @@
-AREA    |.text|, CODE, READONLY
+		AREA    |.text|, CODE, READONLY
 		ALIGN
 
 ; This register controls the clock gating logic in normal Run mode
@@ -24,7 +24,7 @@ R11_ADDR_BUMPERS	EQU		11          ; Registre R11 pour l'adresse groupée
 		EXPORT	bumpersInit
 		EXPORT	readBumper0
 		EXPORT  readBumper1
-		EXPORT  readBumper0_1
+		EXPORT  readBumpers0_1
 			
 bumpersInit
 		
@@ -67,6 +67,8 @@ readBumper1
 	ldr 	r0, [r10]					; Lecture de PE1 (Bumper 1)
 	BX LR
 
-readBumpers_0_1
+readBumpers0_1
     ldr     r0, [r11]                   ; Lecture de PE0 et PE1 en même temps
     BX LR
+	
+	END

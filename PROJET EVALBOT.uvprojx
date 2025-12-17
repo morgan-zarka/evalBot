@@ -10,6 +10,7 @@
       <TargetName>Target_1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>6240000::V6.24::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -402,6 +403,11 @@
               <FileName>Bumpers.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\Bumpers.s</FilePath>
+            </File>
+            <File>
+              <FileName>RK_Config_Moteur.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\RK_Config_Moteur.s</FilePath>
             </File>
           </Files>
         </Group>
