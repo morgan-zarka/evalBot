@@ -1,7 +1,8 @@
-		AREA    |.text|, CODE, READONLY
+					AREA    |.text|, CODE, READONLY
 DUREE_NORMAL		EQU     0x001FFFFF
-DUREE_RAPIDE		EQU			0x000FFFFF
-COUNTDOWN				EQU			0x0000000F
+DUREE_RAPIDE		EQU		0x000FFFFF
+DUREE_RECUL         EQU     0x00A00000  ; AJOUT: Durée longue pour bien reculer
+COUNTDOWN			EQU		0x0000000F
 
 			
 		ENTRY
@@ -39,8 +40,10 @@ COUNTDOWN				EQU			0x0000000F
 		IMPORT  SetRapidMode
 		IMPORT  SetNormalMode
 
-			;;; Registres utilis�s : switch : R7 et R8 ;;; bumpers : R1,R2,R9,R10,R11 ;;; Moteurs : r6 ;;; Leds : R5;;; R3 et R12 Pour des flags de durée
-			;;; Registre DISPONIBLE : R4
+			;;; Registres utilisés : switch : R7 et R8 ;;; bumpers : R1,R2,R9,R10,R11 
+			;;; Moteurs : r6 ;;; Leds : R5
+			;;; R3 : Vitesse (Durée du délai)
+			;;; R12 : Compteur dégressif
 __main
 	BL LedsInit
 	BL SwitchersInit
@@ -59,7 +62,7 @@ loop
 start
 	BL MOTEUR_DROIT_ON
 	BL MOTEUR_GAUCHE_ON	
-	BL MOTEUR_DROIT_AVANT	   
+	BL MOTEUR_DROIT_AVANT    
 	BL MOTEUR_GAUCHE_AVANT
 	BL SetNormalMode
 	B mainLoop
@@ -67,8 +70,13 @@ start
 mainLoop
 	BL ToggleLeds
 	
+
 	CMP r12, #0x000
 	BLGT speedCountdown
+
+	BL readBumpers0_1       
+	BL TestReculer          
+
 
 	BL InitDelay
 
@@ -86,9 +94,31 @@ stop
 	LDR r3, =DUREE_NORMAL
 
 	B loop
+TestReculer
+	CMP r0, #0x00           
+	BEQ Reculer            
+	BX LR                  
+
+Reculer
+	BL MOTEUR_GAUCHE_ARRIERE
+	BL MOTEUR_DROIT_ARRIERE
 	
+	LDR R0, =DUREE_RECUL    
+ReculerWait
+	SUBS R0, #1
+	BNE ReculerWait
+	
+	BL MOTEUR_DROIT_AVANT
+	BL MOTEUR_GAUCHE_AVANT
+
+	LDR R3, =DUREE_NORMAL
+	LDR R12, =COUNTDOWN
+	BL SetNormalMode
+	
+	B mainLoop
+
 InitDelay
-	mov r0, r3
+	mov r0, r3   
 	
 delay
 	subs r0, #1
@@ -106,6 +136,4 @@ highSpeed
 	LDR r3, =DUREE_RAPIDE
 	B mainLoop
 	
-	
 	END
-	
