@@ -27,15 +27,15 @@ BROCHE6				EQU 	0x40		; switcher 1
 BROCHE7				EQU		0x80		; switcher 2
 BROCHE6_7			EQU		0xc0		; switcher 1 et 2
 	
-		EXPORT	switchersInit
-		EXPORT	readSwitch1
-		EXPORT  readSwitch2
+		EXPORT	SwitchersInit
+		EXPORT	ReadSwitch1
+		EXPORT  ReadSwitch2
 			
-switchersInit
+SwitchersInit
 	; ;; Enable the Port D peripheral clock 		(p291 datasheet de lm3s9B96.pdf)									
 		ldr r6, =SYSCTL_PERIPH_GPIO 			;; RCGC2
 		ldr r0, [r6]                            
-        orr r0, r0, #0x08 					    ;; Enable clock sur GPIO D où sont branchés les switchers sans détruire la conf des autres ports des autres
+        orr r0, r0, #0x08 					    ;; Enable clock sur GPIO D oï¿½ sont branchï¿½s les switchers sans dï¿½truire la conf des autres ports des autres
 												;; fichiers (c'est un ou binaire)
         str r0, [r6]
 		
@@ -58,12 +58,12 @@ switchersInit
 	;vvvvvvvvvvvvvvvvvvvvvvvFin configuration Switchers
 		BX LR                                    
 
-readSwitch1
-		ldr r0, [r7] ;; Résultat stocké dans le registre de retour r0
+ReadSwitch1
+		ldr r0, [r7] ;; Rï¿½sultat stockï¿½ dans le registre de retour r0
 		BX LR
 
-readSwitch2
-		ldr r0, [r8] ;; Résultat stocké dans le registre de retour r0
+ReadSwitch2
+		ldr r0, [r8] ;; Rï¿½sultat stockï¿½ dans le registre de retour r0
 		BX LR
 		
 ;fin du programme

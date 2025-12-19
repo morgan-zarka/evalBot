@@ -60,15 +60,15 @@ On éteint le robot avec le switch 2
 
 
 
-boucle btn1 // Mohamed -allumage
+boucle btn1 // Mohamed -allumage -> DONE
 
 
 
-faire avancer // Morgan
+faire avancer // Morgan -> DONE
 
 
 
-boucle bumpers (Mohamed) (test bumper) + btn2 (Morgan) + clignotement passif (Mohamed) + augmentation vitesse (horloge à gérer) (à désigner (second temps))
+boucle bumpers (Mohamed) (test bumper) + btn2 (Morgan) -> DONE + clignotement passif (Mohamed) -> DONE + augmentation vitesse (horloge à gérer) (à désigner (second temps))
 
 Si bumpers, vérifier si juste 1 ou si les deux
 

@@ -1,82 +1,110 @@
 		AREA    |.text|, CODE, READONLY
-DUREE_NORMAL   EQU     0x001FFFFF	; Random Value
-DUREE_RAPIDE   EQU		0x000FFFFF
+DUREE_NORMAL		EQU     0x001FFFFF
+DUREE_RAPIDE		EQU			0x001FFFFF
+COUNTDOWN				EQU			0x00000003
 
 			
 		ENTRY
 		EXPORT	__main
 			
 		IMPORT  LedsInit
-        IMPORT  LedOn1
-        IMPORT  ToggleLed1
-        IMPORT  LedOn2
-        IMPORT  ToggleLed2
-        IMPORT  LedsOn
-        IMPORT  ToggleLeds
-        IMPORT  LedsOff
-			
-        IMPORT  switchersInit
-        IMPORT  readSwitch1
-        IMPORT  readSwitch2
-			
-        IMPORT  bumpersInit
-        IMPORT  readBumper0
-        IMPORT  readBumper1
-        IMPORT  readBumpers0_1
-			
-        IMPORT  MOTEUR_INIT
-        IMPORT  MOTEUR_DROIT_ON
-        IMPORT  MOTEUR_DROIT_OFF
-        IMPORT  MOTEUR_DROIT_AVANT
-        IMPORT  MOTEUR_DROIT_ARRIERE
-        IMPORT  MOTEUR_DROIT_INVERSE
-        IMPORT  MOTEUR_GAUCHE_ON
-        IMPORT  MOTEUR_GAUCHE_OFF
-        IMPORT  MOTEUR_GAUCHE_AVANT
-        IMPORT  MOTEUR_GAUCHE_ARRIERE
-        IMPORT  MOTEUR_GAUCHE_INVERSE
-		IMPORT  setRapidMode
-		IMPORT  setNormalMode
+		IMPORT  LedOn1
+		IMPORT  ToggleLed1
+		IMPORT  LedOn2
+		IMPORT  ToggleLed2
+		IMPORT  LedsOn
+		IMPORT  ToggleLeds
+		IMPORT  LedsOff
+	
+		IMPORT  SwitchersInit
+		IMPORT  ReadSwitch1
+		IMPORT  ReadSwitch2
+	
+		IMPORT  bumpersInit
+		IMPORT  readBumper0
+		IMPORT  readBumper1
+		IMPORT  readBumpers0_1
+	
+		IMPORT  MOTEUR_INIT
+		IMPORT  MOTEUR_DROIT_ON
+		IMPORT  MOTEUR_DROIT_OFF
+		IMPORT  MOTEUR_DROIT_AVANT
+		IMPORT  MOTEUR_DROIT_ARRIERE
+		IMPORT  MOTEUR_DROIT_INVERSE
+		IMPORT  MOTEUR_GAUCHE_ON
+		IMPORT  MOTEUR_GAUCHE_OFF
+		IMPORT  MOTEUR_GAUCHE_AVANT
+		IMPORT  MOTEUR_GAUCHE_ARRIERE
+		IMPORT  MOTEUR_GAUCHE_INVERSE
+		IMPORT  SetRapidMode
+		IMPORT  SetNormalMode
 
-			;;; Registres utilisés : switch : R7 et R8 ;;; bumpers : R1,R2,R9,R10,R11 ;;; Moteurs : r6 ;;; Leds : R5
-			;;; Registre DISPONIBLE : ,R3,R4,R12
+			;;; Registres utilisï¿½s : switch : R7 et R8 ;;; bumpers : R1,R2,R9,R10,R11 ;;; Moteurs : r6 ;;; Leds : R5;;; R3 et R12 Pour des flags de durÃ©e
+			;;; Registre DISPONIBLE : R4
 __main
 	BL LedsInit
-	BL switchersInit
+	BL SwitchersInit
 	BL bumpersInit
 	BL MOTEUR_INIT	
+
+	LDR r12, =COUNTDOWN
+	LDR R3, =DUREE_NORMAL
+
 loop
-	BL readSwitch1
+	BL ReadSwitch1
 	CMP r0, #0x000
-	BEQ startMotors
+	BEQ start
 	B loop
 	
-startMotors
+start
 	BL MOTEUR_DROIT_ON
 	BL MOTEUR_GAUCHE_ON	
 	BL MOTEUR_DROIT_AVANT	   
 	BL MOTEUR_GAUCHE_AVANT
-	b mainLoop
+	BL SetNormalMode
+	B mainLoop
 	
 mainLoop
 	BL ToggleLeds
-	BL InitDelay
 	
+	CMP r12, #0x000
+	BLGT speedCountdown
+
+	BL InitDelay
+
+	BL ReadSwitch2
+	CMP r0, #0x000
+	BEQ stop
+
 	B mainLoop
+
+stop
+	BL MOTEUR_DROIT_OFF
+	BL MOTEUR_GAUCHE_OFF
+	BL LedsOff
+	LDR r12, =COUNTDOWN
+	LDR r3, =DUREE_NORMAL
+
+	B loop
 	
 InitDelay
-	ldr r0, =DUREE_NORMAL
-	b delay
-	BX LR
+	mov r4, r3
 	
 delay
-	subs r0, #1
-	CMP r0, #0x000
+	subs r4, #1
 	BNE delay
 	
 	BX LR
-	
-	
+
+speedCountdown
+	SUBS r12, #1
+	BEQ highSpeed
+	BX LR
+
+highSpeed
+	BL SetRapidMode
+	LDR r3, =DUREE_RAPIDE
+	B mainLoop
 	
 	
 	END
