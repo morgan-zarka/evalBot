@@ -88,10 +88,10 @@ stop
 	B loop
 	
 InitDelay
-	mov r4, r3
+	mov r0, r3
 	
 delay
-	subs r4, #1
+	subs r0, #1
 	BNE delay
 	
 	BX LR
