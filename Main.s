@@ -40,10 +40,11 @@ COUNTDOWN			EQU		0x0000000F
 		IMPORT  SetRapidMode
 		IMPORT  SetNormalMode
 
-			;;; Registres utilisés : switch : R7 et R8 ;;; bumpers : R1,R2,R9,R10,R11 
+			;;; Registres utilisés : switch : R7 et R8 ;;; bumpers : R9,R10,R11 
 			;;; Moteurs : r6 ;;; Leds : R5
 			;;; R3 : Vitesse (Durée du délai)
 			;;; R12 : Compteur dégressif
+			;;; Disponible : R1,R2,R4
 __main
 	BL LedsInit
 	BL SwitchersInit
