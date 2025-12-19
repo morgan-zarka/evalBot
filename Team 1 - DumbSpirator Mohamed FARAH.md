@@ -68,13 +68,13 @@ faire avancer // Morgan -> DONE
 
 
 
-boucle bumpers (Mohamed) (test bumper) + btn2 (Morgan) -> DONE + clignotement passif (Mohamed) -> DONE + augmentation vitesse (horloge à gérer) (à désigner (second temps))
+boucle bumpers (Mohamed) (test bumper) + btn2 (Morgan) -> DONE + clignotement passif (Mohamed) -> DONE + augmentation vitesse (horloge à gérer) (Morgan) -> DONE
 
 Si bumpers, vérifier si juste 1 ou si les deux
 
 
 
-faire reculer (Mohamed) + Pivoter (Morgan) + reset horloge (celui qui aura géré l'augmentation de la vitesse) + clignotant (Morgan)
+faire reculer (Mohamed) + Pivoter (Morgan) + reset horloge (Morgan) -> DONE + clignotant (Morgan)
 
 
 
