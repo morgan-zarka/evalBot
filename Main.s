@@ -1,5 +1,6 @@
 					AREA    |.text|, CODE, READONLY
 DUREE_NORMAL		EQU     0x001FFFFF
+DUREE_DOUBLE		EQU		0x003FFFFE
 DUREE_RAPIDE		EQU		0x000FFFFF
 DUREE_RECUL         EQU     0x00A00000  ; AJOUT: Durée longue pour bien reculer
 COUNTDOWN			EQU		0x0000000F
@@ -73,19 +74,15 @@ mainLoop
 	
 
 	CMP r12, #0x000
-	BLGT speedCountdown
-
-	BL readBumpers0_1       
-	BL TestReculer          
-
+	BLGT speedCountdown          
 
 	BL InitDelay
 
 	BL ReadSwitch2
 	CMP r0, #0x000
 	BEQ stop
-
-	B mainLoop
+	
+	B testColision
 
 stop
 	BL MOTEUR_DROIT_OFF
@@ -95,19 +92,21 @@ stop
 	LDR r3, =DUREE_NORMAL
 
 	B loop
-TestReculer
-	CMP r0, #0x00           
-	BEQ Reculer            
-	BX LR                  
+testColision
+	BL readBumpers0_1       
+	CMP r0, #0x03
+	BNE reculer
+	B mainLoop
 
-Reculer
+reculer
+	MOV R2, R0
 	BL MOTEUR_GAUCHE_ARRIERE
 	BL MOTEUR_DROIT_ARRIERE
 	
 	LDR R0, =DUREE_RECUL    
-ReculerWait
+reculerWait
 	SUBS R0, #1
-	BNE ReculerWait
+	BNE reculerWait
 	
 	BL MOTEUR_DROIT_AVANT
 	BL MOTEUR_GAUCHE_AVANT
@@ -116,6 +115,37 @@ ReculerWait
 	LDR R12, =COUNTDOWN
 	BL SetNormalMode
 	
+	CMP r2, #0x00
+	BEQ warningMode
+	CMP r2, #0x01
+	BEQ turnRight
+	CMP r2, #0x02
+	BEQ turnLeft
+
+	B mainLoop
+
+turnRight
+	BL MOTEUR_GAUCHE_AVANT
+	BL MOTEUR_DROIT_ARRIERE
+	LDR R0, =DUREE_DOUBLE
+turnRightWait
+	SUBS R0, #1
+	BNE turnRightWait
+
+	BL MOTEUR_DROIT_AVANT
+	BL MOTEUR_GAUCHE_AVANT
+
+	B mainLoop
+
+turnLeft
+	BL MOTEUR_DROIT_AVANT
+	BL MOTEUR_GAUCHE_ARRIERE
+	LDR R0, =DUREE_DOUBLE
+turnLeftWait
+	SUBS R0, #1
+	BNE turnLeftWait
+	BL MOTEUR_DROIT_AVANT
+	BL MOTEUR_GAUCHE_AVANT
 	B mainLoop
 
 InitDelay
@@ -137,4 +167,7 @@ highSpeed
 	LDR r3, =DUREE_RAPIDE
 	B mainLoop
 	
+warningMode
+	B mainLoop
+
 	END

@@ -68,19 +68,19 @@ faire avancer // Morgan -> DONE
 
 
 
-boucle bumpers (Mohamed) (test bumper) + btn2 (Morgan) -> DONE + clignotement passif (Mohamed) -> DONE + augmentation vitesse (horloge à gérer) (Morgan) -> DONE
+boucle bumpers (Mohamed) (test bumper) -> DONE + btn2 (Morgan) -> DONE + clignotement passif (Mohamed) -> DONE + augmentation vitesse (horloge à gérer) (Morgan) -> DONE
 
 Si bumpers, vérifier si juste 1 ou si les deux
 
 
 
-faire reculer (Mohamed) + Pivoter (Morgan) + reset horloge (Morgan) -> DONE + clignotant (Morgan)
+faire reculer (Mohamed) -> DONE + Pivoter (Morgan) -> DONE + reset horloge (Morgan) -> DONE + clignotant (Morgan)
 
 
 
 Mode détresse :
 
-Faire reculer (Morgan)
+Faire reculer (Morgan) -> DONE
 
 Demi tour (Mohamed)
 
