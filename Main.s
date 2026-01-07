@@ -23,10 +23,10 @@ COUNTDOWN			EQU		0x0000000F
 		IMPORT  ReadSwitch1
 		IMPORT  ReadSwitch2
 	
-		IMPORT  bumpersInit
-		IMPORT  readBumper0
-		IMPORT  readBumper1
-		IMPORT  readBumpers0_1
+		IMPORT  BumpersInit
+		IMPORT  ReadBUMPER1
+		IMPORT  ReadBUMPER2
+		IMPORT  ReadBumpers
 	
 		IMPORT  MOTEUR_INIT
 		IMPORT  MOTEUR_DROIT_ON
@@ -50,7 +50,7 @@ COUNTDOWN			EQU		0x0000000F
 __main
 	BL LedsInit
 	BL SwitchersInit
-	BL bumpersInit
+	BL BumpersInit
 	BL MOTEUR_INIT	
 
 	LDR r12, =COUNTDOWN
@@ -83,7 +83,7 @@ mainLoop
 	CMP r0, #0x000
 	BEQ stop
 	
-	B testColision
+	B crashTest
 
 stop
 	BL MOTEUR_DROIT_OFF
@@ -93,13 +93,13 @@ stop
 	LDR r3, =DUREE_NORMAL
 
 	B loop
-testColision
-	BL readBumpers0_1       
+crashTest
+	BL ReadBumpers       
 	CMP r0, #0x03
-	BNE reculer
+	BNE backup
 	B mainLoop
 
-reculer
+backup
 	MOV R2, R0
 	BL SetNormalMode
 	BL LedsOff
@@ -107,9 +107,9 @@ reculer
 	BL MOTEUR_DROIT_ARRIERE
 	
 	LDR R1, =DUREE_RECUL    
-reculerWait
+backupDelay
 	SUBS R1, #1
-	BNE reculerWait
+	BNE backupDelay
 	
 	BL MOTEUR_DROIT_AVANT
 	BL MOTEUR_GAUCHE_AVANT

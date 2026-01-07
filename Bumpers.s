@@ -14,19 +14,19 @@ GPIO_O_DEN  		EQU 	0x0000051C ; GPIO Digital Enable (p437 datasheet de lm3s9B92.
 ; Pul_up
 GPIO_I_PUR  		EQU 	0x00000510 ; GPIO Pull-Up (p432 datasheet de lm3s9B92.pdf)
 	
-BROCHE_BUMPER0		EQU		0x01		; PE0
-BROCHE_BUMPER1		EQU		0x02		; PE1
-BROCHES_BUMPER0_1	EQU		0x03		; PE0 | PE1
+BROCHE_BUMPER1		EQU		0x01		; PE0
+BROCHE_BUMPER2		EQU		0x02		; PE1
+BROCHES_BUMPER1_2	EQU		0x03		; PE0 | PE1
 
-; Nouvelle adresse pour la lecture groupée
-R11_ADDR_BUMPERS	EQU		11          ; Registre R11 pour l'adresse groupée
+; Nouvelle adresse pour la lecture groupï¿½e
+R11_ADDR_BUMPERS	EQU		11          ; Registre R11 pour l'adresse groupï¿½e
 	
-		EXPORT	bumpersInit
-		EXPORT	readBumper0
-		EXPORT  readBumper1
-		EXPORT  readBumpers0_1
+		EXPORT	BumpersInit
+		EXPORT	ReadBUMPER1
+		EXPORT  ReadBUMPER2
+		EXPORT  ReadBumpers
 			
-bumpersInit
+BumpersInit
     
     ldr r6, = SYSCTL_PERIPH_GPIO 
     ldr r0, [r6]                   
@@ -38,7 +38,7 @@ bumpersInit
     nop
 
     ldr r1, = GPIO_PORTE_BASE      
-    ldr r0, = BROCHES_BUMPER0_1
+    ldr r0, = BROCHES_BUMPER1_2
         
     ; Pull-Up
     ldr r2, = GPIO_PORTE_BASE+GPIO_I_PUR
@@ -48,22 +48,22 @@ bumpersInit
     ldr r2, = GPIO_PORTE_BASE+GPIO_O_DEN
     str r0, [r2]
         
-    ldr r9, = GPIO_PORTE_BASE + (BROCHE_BUMPER0<<2)
-    ldr r10, = GPIO_PORTE_BASE + (BROCHE_BUMPER1<<2)
-    ldr r11, = GPIO_PORTE_BASE + (BROCHES_BUMPER0_1<<2)
+    ldr r9, = GPIO_PORTE_BASE + (BROCHE_BUMPER1<<2)
+    ldr r10, = GPIO_PORTE_BASE + (BROCHE_BUMPER2<<2)
+    ldr r11, = GPIO_PORTE_BASE + (BROCHES_BUMPER1_2<<2)
     
     BX LR
 	
-readBumper0
+ReadBUMPER1
 	ldr 	r0, [r9]					; Lecture de PE0 (Bumper 0)
 	BX 	LR								
 
-readBumper1
+ReadBUMPER2
 	ldr 	r0, [r10]					; Lecture de PE1 (Bumper 1)
 	BX LR
 
-readBumpers0_1
-    ldr     r0, [r11]                   ; Lecture de PE0 et PE1 en même temps
+ReadBumpers
+    ldr     r0, [r11]                   ; Lecture de PE0 et PE1 en mï¿½me temps
     BX LR
 	
 	END

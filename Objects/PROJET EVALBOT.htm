@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\PROJET EVALBOT.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\PROJET EVALBOT.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Wed Jan  7 18:24:26 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Wed Jan  7 18:41:59 2026
 <BR><P>
 <H3>Maximum Stack Usage =          0 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -25,10 +25,10 @@ Functions with no stack information
  <LI><a href="#[13]">SwitchersInit</a>
  <LI><a href="#[15]">ReadSwitch1</a>
  <LI><a href="#[17]">ReadSwitch2</a>
- <LI><a href="#[14]">bumpersInit</a>
- <LI><a href="#[1f]">readBumper0</a>
- <LI><a href="#[20]">readBumper1</a>
- <LI><a href="#[19]">readBumpers0_1</a>
+ <LI><a href="#[14]">BumpersInit</a>
+ <LI><a href="#[1f]">ReadBUMPER1</a>
+ <LI><a href="#[20]">ReadBUMPER2</a>
+ <LI><a href="#[19]">ReadBumpers</a>
  <LI><a href="#[5]">MOTEUR_INIT</a>
  <LI><a href="#[6]">MOTEUR_DROIT_ON</a>
  <LI><a href="#[7]">MOTEUR_DROIT_OFF</a>
@@ -73,9 +73,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
 <P><STRONG><a name="[4]"></a>__main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, main.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readBumpers0_1
-<LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bumpersInit
-<LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToggleLeds
+<BR><BR>[Calls]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToggleLeds
 <LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToggleLed2
 <LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToggleLed1
 <LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SwitchersInit
@@ -83,6 +81,7 @@ Global Symbols
 <LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetNormalMode
 <LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadSwitch2
 <LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadSwitch1
+<LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadBumpers
 <LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTEUR_INIT
 <LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTEUR_GAUCHE_ON
 <LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTEUR_GAUCHE_OFF
@@ -97,6 +96,7 @@ Global Symbols
 <LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedsInit
 <LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedOn2
 <LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedOn1
+<LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BumpersInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
 </UL>
@@ -145,15 +145,15 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 </UL>
 
-<P><STRONG><a name="[14]"></a>bumpersInit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, bumpers.o(.text))
+<P><STRONG><a name="[14]"></a>BumpersInit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, bumpers.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 </UL>
 
-<P><STRONG><a name="[1f]"></a>readBumper0</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, bumpers.o(.text), UNUSED)
+<P><STRONG><a name="[1f]"></a>ReadBUMPER1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, bumpers.o(.text), UNUSED)
 
-<P><STRONG><a name="[20]"></a>readBumper1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, bumpers.o(.text), UNUSED)
+<P><STRONG><a name="[20]"></a>ReadBUMPER2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, bumpers.o(.text), UNUSED)
 
-<P><STRONG><a name="[19]"></a>readBumpers0_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, bumpers.o(.text))
+<P><STRONG><a name="[19]"></a>ReadBumpers</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, bumpers.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 </UL>
 
