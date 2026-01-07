@@ -1,7 +1,7 @@
 					AREA    |.text|, CODE, READONLY
 DUREE_NORMAL		EQU     0x001FFFFF
-DUREE_DOUBLE		EQU		0x003FFFFE
-DUREE_DEMITOUR		EQU		0x007FFFFC
+DUREE_DOUBLE		EQU		0x00000003
+DUREE_DEMITOUR		EQU		0x00000005
 DUREE_RAPIDE		EQU		0x000FFFFF
 DUREE_RECUL         EQU     0x00A00000  ; AJOUT: Durée longue pour bien reculer
 COUNTDOWN			EQU		0x0000000F
@@ -101,12 +101,14 @@ testColision
 
 reculer
 	MOV R2, R0
+	BL SetNormalMode
+	BL LedsOff
 	BL MOTEUR_GAUCHE_ARRIERE
 	BL MOTEUR_DROIT_ARRIERE
 	
-	LDR R0, =DUREE_RECUL    
+	LDR R1, =DUREE_RECUL    
 reculerWait
-	SUBS R0, #1
+	SUBS R1, #1
 	BNE reculerWait
 	
 	BL MOTEUR_DROIT_AVANT
@@ -114,7 +116,6 @@ reculerWait
 
 	LDR R3, =DUREE_NORMAL
 	LDR R12, =COUNTDOWN
-	BL SetNormalMode
 	
 	CMP r2, #0x00
 	BEQ warningMode
@@ -128,35 +129,46 @@ reculerWait
 turnRight
 	BL MOTEUR_GAUCHE_AVANT
 	BL MOTEUR_DROIT_ARRIERE
-	LDR R0, =DUREE_DOUBLE
-	
-turnRightWait
-	SUBS R0, #1
-	BNE turnRightWait
-
-	BL MOTEUR_DROIT_AVANT
-	BL MOTEUR_GAUCHE_AVANT
-
-	B mainLoop
+	BL LedsOff
+	BL LedOn1
+	LDR R1, =DUREE_DOUBLE
+	B turnWait
 
 turnLeft
 	BL MOTEUR_DROIT_AVANT
 	BL MOTEUR_GAUCHE_ARRIERE
-	LDR R0, =DUREE_DOUBLE
-turnLeftWait
-	SUBS R0, #1
-	BNE turnLeftWait
+	BL LedsOff
+	BL LedOn2
+	LDR R1, =DUREE_DOUBLE
+	B turnWait
+
+turnWait
+	BL InitDelay
+	
+	CMP r2, #0x00
+	BLEQ ToggleLeds
+	CMP r2, #0x01
+	BLEQ ToggleLed1
+	CMP r2, #0x02
+	BLEQ ToggleLed2
+
+	SUBS R1, #1
+	BNE turnWait
+
 	BL MOTEUR_DROIT_AVANT
 	BL MOTEUR_GAUCHE_AVANT
+	BL LedsOn
 	B mainLoop
 
 InitDelay
-	mov r0, r3   
+	PUSH {lr}
+	mov r4, r3   
 	
 delay
-	subs r0, #1
+	subs r4, #1
 	BNE delay
 	
+	POP {lr}
 	BX LR
 
 speedCountdown
@@ -170,17 +182,12 @@ highSpeed
 	B mainLoop
 	
 warningMode
+	BL LedsOff
+	BL LedOn2
 	BL MOTEUR_GAUCHE_AVANT    
-    BL MOTEUR_DROIT_ARRIERE   
- 
-    LDR R0, =DUREE_DEMITOUR     
+	BL MOTEUR_DROIT_ARRIERE   
 
-turnAroundWait
-    SUBS R0, #1
-    BNE turnAroundWait
-    BL MOTEUR_DROIT_AVANT
-    BL MOTEUR_GAUCHE_AVANT
-
-    B mainLoop
+	LDR R1, =DUREE_DEMITOUR     
+	B turnWait
 
 	END

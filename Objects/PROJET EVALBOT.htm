@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\PROJET EVALBOT.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\PROJET EVALBOT.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Wed Jan  7 17:15:36 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Wed Jan  7 18:24:26 2026
 <BR><P>
 <H3>Maximum Stack Usage =          0 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -16,8 +16,8 @@ Functions with no stack information
  <LI><a href="#[4]">__main</a>
  <LI><a href="#[12]">LedsInit</a>
  <LI><a href="#[1a]">LedOn1</a>
- <LI><a href="#[1b]">ToggleLed1</a>
- <LI><a href="#[1c]">LedOn2</a>
+ <LI><a href="#[1c]">ToggleLed1</a>
+ <LI><a href="#[1b]">LedOn2</a>
  <LI><a href="#[1d]">ToggleLed2</a>
  <LI><a href="#[1e]">LedsOn</a>
  <LI><a href="#[16]">ToggleLeds</a>
@@ -76,6 +76,8 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readBumpers0_1
 <LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bumpersInit
 <LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToggleLeds
+<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToggleLed2
+<LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToggleLed1
 <LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SwitchersInit
 <LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetRapidMode
 <LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetNormalMode
@@ -90,8 +92,11 @@ Global Symbols
 <LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTEUR_DROIT_OFF
 <LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTEUR_DROIT_AVANT
 <LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTEUR_DROIT_ARRIERE
+<LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedsOn
 <LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedsOff
 <LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedsInit
+<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedOn2
+<LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedOn1
 </UL>
 <BR>[Called By]<UL><LI><a href="#[0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
 </UL>
@@ -100,15 +105,25 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 </UL>
 
-<P><STRONG><a name="[1a]"></a>LedOn1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
+<P><STRONG><a name="[1a]"></a>LedOn1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+</UL>
 
-<P><STRONG><a name="[1b]"></a>ToggleLed1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
+<P><STRONG><a name="[1c]"></a>ToggleLed1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+</UL>
 
-<P><STRONG><a name="[1c]"></a>LedOn2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
+<P><STRONG><a name="[1b]"></a>LedOn2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+</UL>
 
-<P><STRONG><a name="[1d]"></a>ToggleLed2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
+<P><STRONG><a name="[1d]"></a>ToggleLed2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+</UL>
 
-<P><STRONG><a name="[1e]"></a>LedsOn</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text), UNUSED)
+<P><STRONG><a name="[1e]"></a>LedsOn</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+</UL>
 
 <P><STRONG><a name="[16]"></a>ToggleLeds</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main

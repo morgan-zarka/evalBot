@@ -74,7 +74,7 @@ Si bumpers, vérifier si juste 1 ou si les deux
 
 
 
-faire reculer (Mohamed) -> DONE + Pivoter (Morgan) -> DONE + reset horloge (Morgan) -> DONE + clignotant (Morgan)
+faire reculer (Mohamed) -> DONE + Pivoter (Morgan) -> DONE + reset horloge (Morgan) -> DONE + clignotant (Morgan) -> DONE
 
 
 
@@ -82,7 +82,7 @@ Mode détresse :
 
 Faire reculer (Morgan) -> DONE
 
-Demi tour (Mohamed)
+Demi tour (Mohamed) -> DONE
 
-Lumière alternance (Morgan)
+Lumière alternance (Morgan) -> DONE
 
