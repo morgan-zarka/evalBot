@@ -1,6 +1,7 @@
 					AREA    |.text|, CODE, READONLY
 DUREE_NORMAL		EQU     0x001FFFFF
 DUREE_DOUBLE		EQU		0x003FFFFE
+DUREE_DEMITOUR		EQU		0x007FFFFC
 DUREE_RAPIDE		EQU		0x000FFFFF
 DUREE_RECUL         EQU     0x00A00000  ; AJOUT: Durée longue pour bien reculer
 COUNTDOWN			EQU		0x0000000F
@@ -128,6 +129,7 @@ turnRight
 	BL MOTEUR_GAUCHE_AVANT
 	BL MOTEUR_DROIT_ARRIERE
 	LDR R0, =DUREE_DOUBLE
+	
 turnRightWait
 	SUBS R0, #1
 	BNE turnRightWait
@@ -168,6 +170,17 @@ highSpeed
 	B mainLoop
 	
 warningMode
-	B mainLoop
+	BL MOTEUR_GAUCHE_AVANT    
+    BL MOTEUR_DROIT_ARRIERE   
+ 
+    LDR R0, =DUREE_DEMITOUR     
+
+turnAroundWait
+    SUBS R0, #1
+    BNE turnAroundWait
+    BL MOTEUR_DROIT_AVANT
+    BL MOTEUR_GAUCHE_AVANT
+
+    B mainLoop
 
 	END
